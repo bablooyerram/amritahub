@@ -1,0 +1,57 @@
+
+
+<html>
+<head>
+{% load static %}
+	<link href='{% static "fontawsome/css/all.css"%}' rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+	<link href='{% static "css/login.css"%}' rel="stylesheet">
+
+	<style>
+		.fa-lock {
+	color: #fa000a;
+  position: absolute;
+  top: 105px;
+  left: 56px;
+  font-size: 18px !important;
+  cursor: text;
+  transition: .2s ease-out;
+}
+	</style>
+	
+	
+</head><body>
+{% if message %}
+<script>
+    alert('{{ message }}');
+
+</script>
+{% endif %}
+
+	
+<div class="container">
+	<div class="main">
+		<div class="logo">
+			<h1>AH</h1>
+		</div>
+		<form role="form" action="/home/" method="post">
+			{% csrf_token %}
+			<input type="text" id="email" name="username" placeholder="username" autocomplete="off" required>	<i class="fa fa-user"></i>
+			<input type="password" id="password" name="password" placeholder="password" autocomplete="off"  required>	<i class="fa fa-lock"></i>
+			<input type="submit" value="Log In"  >
+			<h4>Not Registered?<a href="/signup/"> Create an Account</a></h4>
+
+			<h4><a href="/forgot/"> Forgot password?</a></h4>
+		</form>
+	</div>
+</div>
+
+
+
+
+  </body>
+
+
+
+</html>

@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+<title>Events</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-indigo.css">
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
+.searchbar{
+  height:100%
+  /* color:black; */
+  padding:5px;
+}
+.wrapper {
+    min-height: 100%;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+}
+  .navbar{
+  	height:45px;
+    text-align:middle;
+    margin:auto;
+  }
+ 
+  center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+  * {
+  box-sizing: border-box;
+}
+
+input[type=text], select, textarea{
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+input[type=date], select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+}
+input[type=time], select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+}
+
+label {
+  padding: 12px 12px 12px 0;
+  display: inline-block;
+}
+
+input[type=submit] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+.col-25 {
+  float: left;
+  width: 25%;
+  margin-top: 6px;
+}
+
+.col-75 {
+  float: left;
+  width: 75%;
+  margin-top: 6px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .col-25, .col-75, input[type=submit] {
+    width: 100%;
+    margin-top: 0;
+  }
+}
+</style>
+<body class="w3-theme-l5">
+
+  <!-- Navbar -->
+  <div class="w3-top">
+   <div class="w3-bar w3-theme-d2 w3-left-align w3-large navbar">
+    <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2" href="javascript:void(0);" onclick="openNav()">
+      <i class="fa fa-bars"></i></a>
+    <a href="/home/" class="w3-bar-item w3-button w3-padding-large w3-theme-d4 navbar"><i class="fa fa-home w3-margin-right"></i>Amrita Hub</a>
+     <div>
+  	<input type="text" class="w3-bar-item w3-padding-large w3-hide-small w3-input navbar" placeholder="Search...">
+       <a href="#" class="w3-bar-item w3-padding-large w3-hide-small w3-button w3-theme-l1"><i class="fa fa-search navbar"></i></a></div>
+    <a href="/logout/" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="Logout">
+      <img src='{% static "images/logout.png" %}' class="w3-circle" style="height:23px;width:23px" alt="Logout">
+    <a href="/profile/" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="My Account"><img src='{%static profile.img.url|slice:"12:" %}'  class="w3-circle" style="height:23px;width:23px" alt="Logout"></a>
+
+      <a href="/message/" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="Notifications"><i class="fa fa-bell"></i></a>
+    </a>
+   </div>
+  </div>
+
+  <!-- Navbar on small screens -->
+  <div id="navDemo" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium w3-large">
+    <a href="#" class="w3-bar-item w3-button w3-padding-large">Dropdown</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding-large">Messages</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding-large">Notifications</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding-large">My Profile</a>
+  </div>
+
+<!-- Page Container -->
+<div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">
+  <!-- The Grid -->
+  <div class="w3-row">
+    <!-- Left Column -->
+    
+    
+   <div class="w3-col m3">
+      <!-- Profile -->
+      <div class="w3-card w3-round w3-white">
+        <div class="w3-container">
+         <h4 class="w3-center">Messages</h4>
+         <hr>
+         <button onclick="myFunc('demo1')" class="w3-button w3-block w3-left-align w3-blue"><i class="fa fa-user fa-fw w3-margin-center"></i>
+Friends</button>&nbsp;&nbsp;&nbsp;&nbsp;
+          <div id="demo1" class="w3-hide w3-container">
+            <p>My Friends list...</p>
+          </div>
+         <button onclick="myFunc('demo2')" class="w3-button w3-block w3-left-align w3-teal"><i class="fa fa-users fa-fw w3-margin-center"></i> Groups</button>&nbsp;&nbsp;&nbsp;
+          <div id="demo2" class="w3-hide w3-container">
+            <p>My Groups list...</p>
+          </div>
+         <button onclick="myFunc('demo3')" class="w3-button w3-block w3-left-align w3-indigo"><i class="fa fa-bullhorn fa-fw w3-margin-center"></i> Discord/Broadcast</button>&nbsp;&nbsp;&nbsp;
+          <div id="demo3" class="w3-hide w3-container">
+            <p>Broadcast msg to everyone...</p>
+          </div>
+        </div>
+      </div>
+      <br>
+
+      <!-- Accordion -->
+      <div class="w3-card w3-round">
+        <div class="w3-white">
+          <button onclick="window.location.href = '/friends/';" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i> My Friends</button>
+          <div id="Demo1" class="w3-hide w3-container">
+          </div>
+          <button onclick="window.location.href='/event/';" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i> My Events</button>
+          <div id="Demo2" class="w3-hide w3-container">
+          </div>
+          <button onclick="window.location.href='/photos/';" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-users fa-fw w3-margin-right"></i> My Photos</button>
+          <div id="Demo3" class="w3-hide w3-container">
+          </div>
+        </div>
+      </div>
+      <br>
+
+      <!-- Interests -->
+      
+
+      <!-- Alert Box -->
+
+    <!-- End Left Column -->
+    </div>
+
+    <!-- Middle Column -->
+    <div class="w3-col m7">
+
+      <div class="w3-row-padding">
+        <div class="w3-card w3-round w3-white">
+        <div class="w3-container">
+  <form action="/action_page.php">
+  <div class="row" style="margin:8px 0px 0px 0px">
+    <div class="col-25">
+      <label for="fname">Event Name</label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="fname" name="firstname" placeholder="Event name..." required>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25">
+      <label for="lname">Club Name</label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="lname" name="lastname" placeholder="Club name..." required>
+    </div>
+  </div>
+    <div class="row">
+    <div class="col-25">
+      <label for="lname">Date</label>
+    </div>
+    <div class="col-75">
+      <input type="date" id="date" name="date" placeholder="Date..." style="margin:10px 10px 10px 0px" required>
+    </div>
+  </div>
+    <div class="row">
+    <div class="col-25">
+      <label for="lname">Time</label>
+    </div>
+    <div class="col-75">
+      <input type="time" id="time" name="time" placeholder="Time..." style="margin:10px 10px 10px 0px" required>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25">
+      <label for="evttype">Type</label>
+    </div>
+    <div class="col-75">
+      <select id="evttype" name="evttype" required>
+        <option value="activity">Activity</option>
+        <option value="workshop">Workshop</option>
+      </select>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25">
+      <label for="subject">About</label>
+    </div>
+    <div class="col-75">
+      <textarea id="subject" name="subject" placeholder="Write something about the event..." style="height:200px" required></textarea>
+    </div>
+  </div>
+  <div class="row">
+    </div>
+  <div class="row">
+    <input type="submit" value="Add" style="margin:10px">
+  </div>
+  </form>
+</div>
+          </div>
+      </div>
+
+    <!-- End Middle Column -->
+    </div>
+
+    <!-- Right Column -->
+    <div class="w3-col m2">
+      <div class="w3-card w3-round w3-white w3-center">
+        <div class="w3-container">
+          <p>Upcoming Events:</p>
+          <img src="/w3images/forest.jpg" alt="Forest" style="width:100%;">
+          <p><strong>Holiday</strong></p>
+          <p>Friday 15:00</p>
+          <p><button class="w3-button w3-block w3-theme-l4">Info</button></p>
+        </div>
+      </div>
+      <br>
+
+      <div class="w3-card w3-round w3-white w3-center">
+        <div class="w3-container">
+          <p>Friend Request</p>
+          <img src="/w3images/avatar6.png" alt="Avatar" style="width:50%"><br>
+          <span>Friend1</span>
+          <div class="w3-row w3-opacity">
+            <div class="w3-half">
+              <button class="w3-button w3-block w3-green w3-section" title="Accept"><i class="fa fa-check"></i></button>
+            </div>
+            <div class="w3-half">
+              <button class="w3-button w3-block w3-red w3-section" title="Decline"><i class="fa fa-remove"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+
+
+    <!-- End Right Column -->
+    </div>
+
+  <!-- End Grid -->
+  </div>
+
+<!-- End Page Container -->
+</div>
+    <br>
+
+<!-- Footer -->
+<footer class="w3-container w3-theme-d3 w3-padding-16">
+  <a href="https://www.amrita.edu"><h5>Visit Amrita Page</h5></a>
+</footer>
+
+
+<script>
+// Accordion
+function myFunction(id) {
+  var x = document.getElementById(id);
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+    x.previousElementSibling.className += " w3-theme-d1";
+  } else {
+    x.className = x.className.replace("w3-show", "");
+    x.previousElementSibling.className =
+    x.previousElementSibling.className.replace(" w3-theme-d1", "");
+  }
+}
+function myFunc(id) {
+  var x = document.getElementById(id);
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+  } else { 
+    x.className = x.className.replace(" w3-show", "");
+  }
+}
+
+// Used to toggle the menu on smaller screens when clicking on the menu button
+function openNav() {
+  var x = document.getElementById("navDemo");
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+  } else {
+    x.className = x.className.replace(" w3-show", "");
+  }
+}  
+</script>
+
+</body>
+</html>

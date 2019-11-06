@@ -1,0 +1,179 @@
+
+<!DOCTYPE html>
+<html>
+<title>Profile</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-indigo.css">
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
+.friendlist {
+  background-color: lightblue;
+  width: 100%;
+  height: 120px;
+  overflow: auto;
+}
+.container {
+  border: 2px solid #dedede;
+  background-color: #000;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 0;
+}
+.darker {
+  border-color: #ccc;
+  background-color: #ddd;
+}  
+.container img {
+  float: left;
+  max-width: 60px;
+  width: 100%;
+  height:50px;
+  margin-right: 20px;
+  border-radius: 50%;
+}
+
+/* Style the right image */
+.container img.right {
+  float: right;
+  margin-left: 20px;
+  margin-right:0;
+}
+  
+</style>
+<body class="w3-theme-l5">
+
+  <!-- Navbar -->
+  <div class="w3-top">
+   <div class="w3-bar w3-theme-d2 w3-left-align w3-large">
+  <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2" href="javascript:void(0);" onclick="openNav()">
+    <i class="fa fa-bars"></i></a>
+  <a href="#" class="w3-bar-item w3-button w3-padding-large w3-theme-d4"><i class="fa fa-home w3-margin-right"></i>Amrita hub</a>
+	<input type="text" class="w3-bar-item w3-input" placeholder="Search...">
+  <a href="#" class="w3-bar-item w3-button w3-green"><i class="fa fa-search"></i></a>
+  <a href="/logout/" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="logout">
+    <img src='{% static "images/logout.png" %}' class="w3-circle" style="height:23px;width:23px" >
+  <a href="/profile/" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="My Profile"><i class="fa fa-user"></i></a>
+
+    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="Messages"><i class="fa fa-bell"></i></a>
+  </a>
+ </div>
+  </div>
+
+  <!-- Navbar on small screens -->
+  <div id="navDemo" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium w3-large">
+    <a href="#" class="w3-bar-item w3-button w3-padding-large">Dropdown</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding-large">Messages</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding-large">Notifications</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding-large">My Profile</a>
+  </div>
+
+
+
+
+
+<!-- Page Container -->
+<div class="w3-container w3-content" style="max-width:1400px;margin-top:51px;padding:0px">
+  <!-- The Grid -->
+  <div class="w3-row">
+   <div class="w3-sidebar w3-bar-block  " style="width:160px;height:100%;">
+  <h5 class="w3-bar-item">Messages</h5>
+  <button class="w3-bar-item w3-button tablink" onclick="openCity(event, 'London')"><i class="fa fa-user-circle fa-fw w3-margin-center w3-large"></i> Friend1 <i class="fa fa-chevron-right fa-fw w3-margin-left"></i></button>
+  <button class="w3-bar-item w3-button tablink" onclick="openCity(event, 'Paris')"><i class="fa fa-user-circle fa-fw w3-margin-center w3-large"></i> Friend2 <i class="fa fa-chevron-right fa-fw w3-margin-left"></i></button>
+  <button class="w3-bar-item w3-button tablink" onclick="openCity(event, 'Tokyo')"><i class="fa fa-user-circle fa-fw w3-margin-center w3-large"></i> Friend3 <i class="fa fa-chevron-right fa-fw w3-margin-left"></i></button>
+</div>
+
+<div style="margin-left:180px">
+  <div class="w3-padding">Your messages with your friends are shown here...</div>
+
+  <div id="London" class="container" style="display:none;height:70%">
+    <div class="container" style="margin:5px;background-color:#fff;">
+    <img src=/w3images/rock.jpg alt="Avatar">
+    <p>Hello. How are you?</p></div>
+    
+    <div class="container darker" style="margin:5px;">
+    <img src=/w3images/lights.jpg alt="Avatar" class="right">
+    <p>Hey! I am fine. What about you?</p></div>
+  </div>
+
+  <div id="Paris" class="container" style="display:none">
+    <div class="container" style="margin:5px;background-color:#fff;">
+    <img src=/w3images/rock.jpg alt="Avatar">
+    <p>Hello. How are you?</p></div>
+    
+    <div class="container darker" style="margin:5px;">
+    <img src=/w3images/lights.jpg alt="Avatar" class="right">
+    <p>Hey! I am fine. What about you?</p></div>
+  </div>
+
+  <div id="Tokyo" class="container" style="display:none">
+    <div class="container" style="margin:5px;background-color:#fff;">
+    <img src=/w3images/rock.jpg alt="Avatar">
+    <p>Hello. How are you?</p></div>
+    
+    <div class="container darker" style="margin:5px;">
+    <img src=/w3images/lights.jpg alt="Avatar" class="right">
+    <p>Hey! I am fine. What about you?</p></div>
+  </div>
+
+            <form class="w3-container">
+              <table style="width:100%;height:30px;"><tr><td>
+              <input class="w3-input w3-border w3-round-xxlarge w3-light-grey w3-border-green" style="height:100%" placeholder="Type..." type="text" ></td><td>
+              
+                <button class="w3-btn w3-input w3-border w3-round-xxlarge w3-green" style="height:100%"><i class="fa fa-paper-plane" aria-hidden="true"></i></button></td></tr></table>
+                 
+            </form>
+
+    </div>
+
+  <!-- End Grid -->
+  </div>
+
+<!-- End Page Container -->
+</div>
+<br>
+
+<!-- Footer -->
+
+<script>
+// Accordion
+function myFunction(id) {
+  var x = document.getElementById(id);
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+    x.previousElementSibling.className += " w3-theme-d1";
+  } else {
+    x.className = x.className.replace("w3-show", "");
+    x.previousElementSibling.className =
+    x.previousElementSibling.className.replace(" w3-theme-d1", "");
+  }
+}
+function openCity(evt, cityName) {
+  var i, x, tablinks;
+  x = document.getElementsByClassName("city");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablink");
+  for (i = 0; i < x.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" w3-green", ""); 
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " w3-green";
+}
+// Used to toggle the menu on smaller screens when clicking on the menu button
+function openNav() {
+  var x = document.getElementById("navDemo");
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+  } else {
+    x.className = x.className.replace(" w3-show", "");
+  }
+}
+</script>
+
+</body>
+</html>

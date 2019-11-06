@@ -1,0 +1,70 @@
+
+
+<html>
+<title>Signup</title>
+<head>
+{% load static %}
+	<link href='{% static "fontawsome/css/all.css"%}' rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+	<link href='{% static "css/login.css"%}' rel="stylesheet">
+	
+
+	
+</head><body>
+	{% if message %}
+<script>
+    alert('{{ message }}');
+
+</script>
+{% endif %}
+	<script>
+function checkPasswordMatch() {
+    var password = $("#password").val();
+    var confirmPassword = $("#password2").val();
+	if (password != "" && confirmPassword!="")
+	{
+
+    if (password != confirmPassword)
+        $("#checkpass").html("Passwords do not match!");
+	else
+        $("#checkpass").html("Passwords match.");
+
+}else
+{$("#checkpass").html("");}
+
+}
+
+</script>
+
+
+<div class="container">
+	<div class="main" style="width: 390px;height: 800px;">
+		<div class="logo">
+			<h1>AH</h1>
+		</div>
+
+		<form role="form" action="/signup/"  method="post">
+			{% csrf_token %}
+			<input type="text" id="username" name="username" placeholder="username" autocomplete="off" required>	<i class="fa fa-user"></i>
+			<input type="email" id="email" placeholder="email" name="email" autocomplete="off" required>	<i class="fa fa-envelope"></i>
+			<input type="password" id="password" name="password" placeholder="password" minlength="8" autocomplete="off" required>	<i class="fa fa-lock"></i>
+			<input type="password" id="password2" name="password2" placeholder="repeat password" onkeyup="checkPasswordMatch();" autocomplete="off" required>	<i class="fa fa-redo"></i> <span id="checkpass"></span>
+				<div>
+					<span id="divCheckPasswordMatch"></span>
+				</div>
+			<input type="submit" id="myBtn" value="signup" style="width:30%;"  >
+			<h4>Already have an account?<a href="/login/"> Login</a></h4>
+			<h4><a href="/forgot/"> Forgot password?</a></h4>
+		</form>
+	</div>
+</div>
+
+
+
+  
+  </body>
+
+
+
+</html>

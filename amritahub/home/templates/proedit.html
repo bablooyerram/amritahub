@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html>
+<title>Edit profile</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{% load static %}
+<title>Edit Page</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <style>
+      html, body {
+      min-height: 100%;
+      }
+      body, div, form, input, select, p {
+      padding: 0;
+      margin: 0;
+      outline: none;
+      font-family: Roboto, Arial, sans-serif;
+      font-size: 14px;
+      color: #666;
+      line-height: 22px;
+      }
+      h1 {
+      margin: 15px 0;
+      font-weight: 400;
+      }
+      .testbox {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: inherit;
+      padding: 3px;
+      }
+      form {
+      width: 100%;
+      padding: 20px;
+      background: #fff;
+      box-shadow: 0 2px 5px #ccc;
+      }
+      input, select, textarea {
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      }
+      input {
+      width: calc(100% - 10px);
+      padding: 5px;
+      }
+      select {
+      width: 100%;
+      padding: 7px 0;
+      background: transparent;
+      }
+      textarea {
+      width: calc(100% - 6px);
+      }
+      .item {
+      position: relative;
+      margin: 10px 0;
+      }
+      .item:hover p, .item:hover i {
+      color: #095484;
+      }
+      input:hover, select:hover, textarea:hover {
+      box-shadow: 0 0 5px 0 #095484;
+      }
+      input[type="date"]::-webkit-inner-spin-button {
+      display: none;
+      }
+      input[type="time"]::-webkit-inner-spin-button {
+      margin: 2px 22px 0 0;
+      }
+      .item i, input[type="date"]::-webkit-calendar-picker-indicator {
+      /* position: absolute; */
+      font-size: 20px;
+      color: #a9a9a9;
+      }
+      .item i {
+      right: 1%;
+      top: 30px;
+      z-index: 1;
+      }
+      [type="date"]::-webkit-calendar-picker-indicator {
+      right: 0;
+      z-index: 2;
+      opacity: 0;
+      cursor: pointer;
+      }
+      .btn-block {
+      margin-top: 20px;
+      text-align: center;
+      }
+      button {
+      width: auto;
+      padding: 10px;
+      border: none;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      border-radius: 5px;
+      background-color: #095484;
+      font-size: 16px;
+      color: #fff;
+      cursor: pointer;
+      }
+      button:hover {
+      background-color: #0666a3;
+      }
+      @media (min-width: 568px) {
+      .name-item, .city-item {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      }
+      .name-item input, .city-item input {
+      width: calc(50% - 20px);
+      }
+      .city-item select {
+      width: calc(50% - 8px);
+      }
+      }
+    </style>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-indigo.css">
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
+.searchbar{
+  width:90%;
+  color:black;
+  padding:5px;
+}
+</style>
+
+<body class="w3-theme-l5" >
+{% if message %}
+<script>
+    alert('{{ message }}');
+
+</script>
+{% endif %}
+<script>
+
+function chooseFile() {
+      $("#fileInput").click();
+   }
+
+
+
+
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#blah')
+                    .attr('src', e.target.result);
+                $('#blah').css('visibility','visible');
+
+            };
+
+            reader.readAsDataURL(input.files[0]);
+
+        }
+    }
+
+
+
+
+
+
+</script>
+
+
+<!-- Navbar -->
+<div class="w3-top">
+<div class="w3-bar w3-theme-d2 w3-left-align w3-large">
+  <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2" href="javascript:void(0);" onclick="openNav()">
+    <i class="fa fa-bars"></i></a>
+  <a href="/home/" class="w3-bar-item w3-button w3-padding-large w3-theme-d4"><i class="fa fa-home w3-margin-right"></i>Amrita hub</a>
+	<input type="text" class="w3-bar-item w3-input" placeholder="Search...">
+  <a href="#" class="w3-bar-item w3-button w3-green"><i class="fa fa-search"></i></a>
+  <a href="/logout/" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="logout">
+    <img src='{% static "images/logout.png" %}' class="w3-circle" style="height:23px;width:23px" >
+  <a href="/profile/" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="My Profile"><i class="fa fa-user"></i></a>
+
+    <a href="/message/" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="Messages"><i class="fa fa-bell"></i></a>
+  </a>
+ </div>
+</div>
+
+<!-- Navbar on small screens -->
+<div id="navDemo" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium w3-large">
+  <a href="/proedit/" class="w3-bar-item w3-button w3-padding-large">Account Settings</a>
+  <a href="#" class="w3-bar-item w3-button w3-padding-large">Messages</a>
+  <a href="#" class="w3-bar-item w3-button w3-padding-large">Notifications</a>
+  <a href="/profile/" class="w3-bar-item w3-button w3-padding-large">My Profile</a>
+    <a href="/logout/" class="w3-bar-item w3-button w3-padding-large">logout</a>
+
+
+</div>
+
+<!-- Page Container -->
+<div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">
+  <!-- The Grid -->
+   <div class="testbox" style="width:60%;margin:auto;">
+      <form action="/proedit/" method="post" enctype="multipart/form-data" >
+          {% csrf_token %}
+        <h1>Edit Profile</h1>
+
+        <div class="item">
+          <p>Profile Picture</p>
+          <div class="name-item">
+            <button type="button" onclick="chooseFile();" class="w3-button w3-theme"><i class="fa fa-picture-o"></i>  upload image</button>
+
+          </div>
+        </div>
+        <div class="item">
+
+          <div class="name-item" style="display:block; ">
+              {% if profile.img %}
+            <img id="blah"  src='{% static profile.img.url|slice:"12:" %}'  style="margin:2%;height:120px;width:120px;"   />
+              {% else %}
+              <img id="blah"  src="#" alt="image"  style="visibility: hidden;margin:2%;height:120px;width:120px;"   />
+              {% endif %}
+
+                <div style="height:0px;overflow:hidden">
+   <input type="file" id="proimage" name="proimage" onchange="readURL(this);" />
+</div>
+
+          </div>
+        </div>
+
+
+
+        <div class="item">
+
+          <p>Name</p>
+          <div class="name-item">
+              {% if profile.name %}
+            <input type="text" name="name" value="{{ profile.name }}" placeholder="Name" />
+              {% else %}
+              <input type="text" name="name" value="" placeholder="Name" />
+             {% endif %}
+          </div>
+        </div>
+        <div class="item">
+
+          <p>Address</p>
+            {% if profile.address %}
+          <input type="text" name="address" value="{{profile.address}}" placeholder="Street address (Info not shown to others)"/>
+         {% else %}
+            <input type="text" name="address" value="" placeholder="Street address (Info not shown to others)"/>
+            {% endif %}
+          <div class="city-item">
+              {% if profile.city %}
+
+            <input type="text" name="city"  Value="{{ profile.city }}" placeholder="City" />
+              {% else %}
+              <input type="text" name="city" value="" placeholder="City" />
+             {% endif %}
+
+
+              {% if profile.state %}
+
+            <input type="text" name="state" value="{{profile.state}}" placeholder="State" />
+
+              {% else %}
+              <input type="text" name="state" value="" placeholder="State" />
+              {% endif %}
+
+
+            {% if profile.zipcode %}
+            <input type="text" name="zipcode" value="{{profile.zipcode}}"placeholder="Postal / Zip code" />
+
+              {% else %}
+
+              <input type="text" name="zipcode" value="" placeholder="Postal / Zip code" />
+              {% endif %}
+            <select name="campus">
+              <option value="">Campus</option>
+              <option value="1">Bangalore</option>
+              <option value="2">Ettimaddai</option>
+              <option value="3">Amritapuri</option>
+            </select>
+          </div>
+        </div>
+        <div class="item">
+          <p>Email</p>
+            {% if profile.username.email %}
+          <input type="email" name="email" value="{{ profile.username.email }}" style="width:50%;"/>
+            {% else %}
+            <input type="email" name="email" value="" style="width:50%;"/>
+              {% endif %}
+        </div>
+        <div class="item">
+
+          <p>Phone number</p>
+            {% if profile.phone %}
+          <input type="tel" name="phone" value="{{profile.phone}}" style="width:30%;"/>
+            {% else %}
+            <input type="tel" name="phone" value="" style="width:30%;"/>
+              {% endif %}
+        </div>
+        <div class="item">
+
+          <p>Date of Birth</p>
+             {% if profile.dob %}
+
+
+            <input type="dtae" name="dob" value="{{ profile.dob|date:"Y-m-d" }}" placeholder="YYYY-MM-DD" required  title="Enter a date in this format YYYY/MM/DD" style="width:30%;margin:2px;" required/>
+         {% else %}
+            <input type="date" name="dob" value="" placeholder="YYYY-MM-DD" required  title="Enter a date in this format YYYY/MM/DD" style="width:30%;margin:2px;" required/>
+
+              {% endif %}
+          <i class="fa fa-calendar-alt"></i>
+        </div>
+        <div class="item">
+          <p>Bio</p>
+            {% if profile.bio %}
+          <textarea rows="5" name="bio" value="{{ profile.bio }}" placeholder="Write about yourself"></textarea>
+            {% else %}
+            <textarea rows="5" name="bio" value="" placeholder="Write about yourself"></textarea>
+              {% endif %}
+        </div>
+        <div class="btn-block">
+          <button type="submit" >Update profile</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="testbox" style="width:60%;margin:auto;">
+      <div class="btn-block">
+        <button href="/">Change Password</button>
+      </div>
+    </div>
+<!-- End Page Container -->
+</div>
+<br>
+
+<!-- Footer -->
+<footer class="w3-container w3-theme-d3 w3-padding-16">
+  <a href="https://www.amrita.edu"><h5>Visit Amrita Page</h5></a>
+</footer>
+
+
+<script>
+// Accordion
+function myFunction(id) {
+  var x = document.getElementById(id);
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+    x.previousElementSibling.className += " w3-theme-d1";
+  } else {
+    x.className = x.className.replace("w3-show", "");
+    x.previousElementSibling.className =
+    x.previousElementSibling.className.replace(" w3-theme-d1", "");
+  }
+}
+
+function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#blah')
+                    .attr('src', e.target.result);
+                $('#blah').css('visibility','visible');
+
+            };
+
+            reader.readAsDataURL(input.files[0]);
+
+        }
+    }
+
+
+
+
+function chooseFile() {
+      $("#proimage").click();
+   }
+
+
+
+function openNav() {
+  var x = document.getElementById("navDemo");
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+  } else {
+    x.className = x.className.replace(" w3-show", "");
+  }
+}
+</script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+</body>
+</html>
