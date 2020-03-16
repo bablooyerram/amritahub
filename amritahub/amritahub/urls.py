@@ -25,17 +25,24 @@ urlpatterns = [
 path('home/',views.home),
     path('signup/',views.signup1),
 path('profile/',views.profilepage),
+path('friendprofile/<int:userid>/',views.friendprofile),
+
 path('proedit/',views.profileEDIT),
 path('message/',views.messages),
     path('uploadpost/',views.uploadphoto),
 path('likepost/<int:postid>/', views.likepost),
-
+path('deletepost/<int:postid>/', views.deletepost),
+path('commentpost/<int:postid>/', views.commentpost),
+path('friendrequest/<int:id>/', views.friendreq),
+path('deleterequest/<int:id>/', views.deletereq),
+path('acceptrequest/<int:id>/', views.acceptreq),
 #url(r'^comments/(?P<oid>[0-9]+)/$', views.comments, name='objects'),
     path('logout/',views.logout1),
     url(r'^login/$', auth_views.LoginView.as_view(template_name="login.html")),
   #  path('confirmemail/',views.emailconfirm),
    path('forgot/',views.forgot),
 path('event/',views.event),
+path('addevent/',views.addevent),
     path('friends/',views.friends),
     path('photos/',views.photos)
 ]

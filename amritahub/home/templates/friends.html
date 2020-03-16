@@ -86,6 +86,12 @@ input[type=submit]:hover {
   display: table;
   clear: both;
 }
+footer{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
 
 /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 600px) {
@@ -95,20 +101,34 @@ input[type=submit]:hover {
   }
 }
 </style>
-<body class="w3-theme-l5">
+<div class="w3-theme-l5">
+{% if message %}
+<script>
+    alert('{{ message }}');
 
+
+</script>
+
+{% endif %}
   <!-- Navbar -->
-  <div class="w3-top">
+<div class="w3-top">
    <div class="w3-bar w3-theme-d2 w3-left-align w3-large navbar">
     <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2" href="javascript:void(0);" onclick="openNav()">
       <i class="fa fa-bars"></i></a>
     <a href="/home/" class="w3-bar-item w3-button w3-padding-large w3-theme-d4 navbar"><i class="fa fa-home w3-margin-right"></i>Amrita Hub</a>
-     <div>
+    <!-- <div>
   	<input type="text" class="w3-bar-item w3-padding-large w3-hide-small w3-input navbar" placeholder="Search...">
-       <a href="#" class="w3-bar-item w3-padding-large w3-hide-small w3-button w3-theme-l1"><i class="fa fa-search navbar"></i></a></div>
+       <a href="#" class="w3-bar-item w3-padding-large w3-hide-small w3-button w3-theme-l1"><i class="fa fa-search navbar"></i></a></div>-->
+
     <a href="/logout/" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="Logout">
       <img src='{% static "images/logout.png" %}' class="w3-circle" style="height:23px;width:23px" alt="Logout">
-    <a href="/profile/" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="My Account"><img src='{%static profile.img.url|slice:"12:" %}'  class="w3-circle" style="height:23px;width:23px" alt="Logout"></a>
+    <a href="/profile/" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="My Account">
+        {% if profile.img %} <img src='{%static profile.img.url|slice:"12:" %}'  class="w3-circle" style="height:23px;width:23px" alt="Logout">
+        {% else %}
+        <img src='{% static "images/user.png" %}'  class="w3-circle" style="height:23px;width:23px" alt="Logout">
+        {% endif %}
+
+    </a>
 
       <a href="/message/" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="Notifications"><i class="fa fa-bell"></i></a>
     </a>
@@ -184,116 +204,140 @@ Friends</button>&nbsp;&nbsp;&nbsp;&nbsp;
         <div class="w3-card w3-round w3-white">
         	<div class="w3-container">
  						<h4>My Friends</h4>
-            <div class="w3-row-padding w3-margin-top w3-margin-bottom">
+{% if friends %}
+{% for friend in friends %}
+{% if forloop.counter0|divisibleby:3 %}
+              <div class="w3-row-padding w3-margin-top w3-margin-bottom">
+    {% endif %}
+
   <div class="w3-third">
-    <div class="w3-card w3-center"  style="height:120px">
+    <div class="w3-card w3-center"  style="height:10%">
       <header class="w3-container w3-light-grey">
-      <h5>Friend1</h5>
+      <h5>{{ friend.name }}</h5>
        </header>
-      <img src="img_1.jpg" style="width:35%">
+      <img {% if friend.img %} src='{% static friend.img.url|slice:"12:" %}' {% else %} src='{% static "images/user.png" %}' {% endif %}  style="width:40%;height:40%">
       <div class="w3-container">
-        <button class="w3-button w3-block">Open  Profile</button>
+        <button class="w3-button w3-block" onclick="window.location.href = '/friendprofile/{{ friend.id }}/';">Open  Profile</button>
       </div>
     </div>
   </div>
 
-  <div class="w3-third">
-    <div class="w3-card w3-center" style="height:120px">
+
+     {% if forloop.counter|divisibleby:3 %}
+</div>
+                {% endif %}
+                {% endfor %}
+
+                {% else %}
+                <div class="w3-row-padding w3-margin-top w3-margin-bottom">
+
+
+  <div class="w3-one">
+    <div class="w3-card w3-center"  style="height:10%">
       <header class="w3-container w3-light-grey">
-      <h5>Friend2</h5>
-    	</header>
-      <img src="img_2.jpg" style="width:35%">
-      <div class="w3-container">
-        <button class="w3-button w3-block">Open  Profile</button>
-      </div>
+
+       </header>
+      <img src='{% static "images/nofriend.jpg" %}' style="width:100%;height:40%">
+
     </div>
   </div>
 
-  <div class="w3-third">
-    <div class="w3-card w3-center" style="height:120px">
-      <header class="w3-container w3-light-grey">
-      <h5>Friend3</h5>
-    	</header>
-      <img src="img_3.jpg" style="width:35%">
-      <div class="w3-container">
-        <button class="w3-button w3-block">Open  Profile</button>
-      </div>
-    </div>
-  </div>
+
+
 </div>
 
+
+{% endif %}
+
+            </div>	</div>
+      </div>
+        <div class="w3-row-padding">
+        <div class="w3-card w3-round w3-white" style="margin-top:1%;">
+        	<div class="w3-container">
+ 						<h4>Add friends</h4>
+                {% if persons %}
+
+{% for person in persons %}
+{% if forloop.counter0|divisibleby:3 %}
 <div class="w3-row-padding w3-margin-top w3-margin-bottom">
+{% endif %}
+
   <div class="w3-third">
-    <div class="w3-card w3-center" style="height:120px">
+    <div class="w3-card w3-center"  style="height:10%">
       <header class="w3-container w3-light-grey">
-      <h5>Friend4</h5>
-    	</header>
-      <img src="img_4.jpg" style="width:35%">
+      <h5>{{ person.name }}</h5>
+       </header>
+
+      <img {% if person.img %} src='{% static person.img.url|slice:"12:" %}' {% else %} src='{% static "images/user.png" %}' {% endif %}  style="width:40%;height:40%">
       <div class="w3-container">
-        <button class="w3-button w3-block">Open  Profile</button>
+        <button class="w3-button w3-block" onclick="window.location.href = '/friendrequest/{{ person.id }}/';"> <i class="fa fa-plus"></i> &nbsp;Add Friend</button>
       </div>
     </div>
   </div>
 
-  <div class="w3-third">
-    <div class="w3-card w3-center" style="height:120px">
-      <header class="w3-container w3-light-grey">
-      <h5>Friend5</h5>
-    	</header>
-      <img src="img_5.jpg" style="width:35%">
-      <div class="w3-container">
-        <button class="w3-button w3-block">Open  Profile</button>
-      </div>
-    </div>
-  </div>
 
-  <div class="w3-third">
-    <div class="w3-card w3-center" style="height:120px">
-      <header class="w3-container w3-light-grey">
-      <h5>Friend6</h5>
-    	</header>
-      <img src="img_6.jpg" style="width:35%">
-      <div class="w3-container">
-        <button class="w3-button w3-block">Open  Profile</button>
-      </div>
-    </div>
-  </div>
+
+
+                {% if forloop.counter|divisibleby:3 %}
 </div>
-					</div>
-        </div>
-      </div>
+                {% endif %}
+                {% endfor %}
 
+            </div>
+{% else %}
+                <h6> No More friends to add! </h6>
+                {% endif %}
+
+            </div>	</div>
+</div>
+
+  </div></div>
     <!-- End Middle Column -->
-    </div>
 
-    <!-- Right Column -->
-    <div class="w3-col m2">
+
+    <!-- Right Column
+   <div class="w3-col m2">
       <div class="w3-card w3-round w3-white w3-center">
         <div class="w3-container">
           <p>Upcoming Events:</p>
-          <img src="/w3images/forest.jpg" alt="Forest" style="width:15%;">
-          <p><strong>Holiday</strong></p>
-          <p>Friday 15:00</p>
-          <p><button class="w3-button w3-block w3-theme-l4">Info</button></p>
+
+          <p><strong>Name : {{event.Name}}</strong></p>
+          <p>Date : {{ event.date }}</p>
+            <p>Venue : {{ event.venue }}</p>
+            <p>Type : {% if event.type == "S" %}Session
+            {% else %}Workshop{% endif %}</p>
+          <p><button class="w3-button w3-block w3-theme-l4" onclick="window.location.href = '/event/';" >Event List</button></p>
         </div>
       </div>
       <br>
 
-      <div class="w3-card w3-round w3-white w3-center">
-        <div class="w3-container">
+        <div class="w3-card w3-round w3-white w3-center">
+        <div class="w3-container">{% if requests %}
           <p>Friend Request</p>
-          <img src="/w3images/avatar6.png" alt="Avatar" style="width:10%"><br>
-          <span>Friend1</span>
+          <img {% if requests.From_user.img %} src='{% static requests.From_user.img.url|slice:"12:" %}' {% else %} src='{% static "images/user.png" %}' {% endif %}  alt="Avatar" style="width:50%"><br>
+          <span>{{ requests.From_user.name }}</span>
+
           <div class="w3-row w3-opacity">
             <div class="w3-half">
-              <button class="w3-button w3-block w3-green w3-section" title="Accept"><i class="fa fa-check"></i></button>
+              <button onclick="window.location.href='/acceptrequest/{{ requests.id }}'" class="w3-button w3-block w3-green w3-section" title="Accept"><i class="fa fa-check"></i></button>
             </div>
             <div class="w3-half">
-              <button class="w3-button w3-block w3-red w3-section" title="Decline"><i class="fa fa-remove"></i></button>
+              <button onclick="window.location.href='/deleterequest/{{ requests.id }}'" class="w3-button w3-block w3-red w3-section" title="Decline"><i class="fa fa-remove"></i></button>
             </div>
           </div>
+            {% else %}
+            <p><h4>No Pending Friend Requests</h4></p>
+            {% endif %}
         </div>
       </div>
+
+
+
+
+    <!-- End Right Column
+    </div> -->
+
+
       <br>
 
 
@@ -308,7 +352,7 @@ Friends</button>&nbsp;&nbsp;&nbsp;&nbsp;
 <br>
 
 <!-- Footer -->
-<footer class="w3-container w3-theme-d3 w3-padding-16">
+<footer class="w3-container w3-theme-d3 w3-padding-16" >
   <a href="https://www.amrita.edu"><h5>Visit Amrita Page</h5></a>
 </footer>
 

@@ -15,6 +15,12 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
   /* color:black; */
   padding:5px;
 }
+footer{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
 .wrapper {
     min-height: 100%;
     display: grid;
@@ -118,12 +124,19 @@ input[type=submit]:hover {
     <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2" href="javascript:void(0);" onclick="openNav()">
       <i class="fa fa-bars"></i></a>
     <a href="/home/" class="w3-bar-item w3-button w3-padding-large w3-theme-d4 navbar"><i class="fa fa-home w3-margin-right"></i>Amrita Hub</a>
-     <div>
+    <!-- <div>
   	<input type="text" class="w3-bar-item w3-padding-large w3-hide-small w3-input navbar" placeholder="Search...">
-       <a href="#" class="w3-bar-item w3-padding-large w3-hide-small w3-button w3-theme-l1"><i class="fa fa-search navbar"></i></a></div>
+       <a href="#" class="w3-bar-item w3-padding-large w3-hide-small w3-button w3-theme-l1"><i class="fa fa-search navbar"></i></a></div>-->
+
     <a href="/logout/" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="Logout">
       <img src='{% static "images/logout.png" %}' class="w3-circle" style="height:23px;width:23px" alt="Logout">
-    <a href="/profile/" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="My Account"><img src='{%static profile.img.url|slice:"12:" %}'  class="w3-circle" style="height:23px;width:23px" alt="Logout"></a>
+    <a href="/profile/" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="My Account">
+        {% if profile.img %} <img src='{%static profile.img.url|slice:"12:" %}'  class="w3-circle" style="height:23px;width:23px" alt="Logout">
+        {% else %}
+        <img src='{% static "images/user.png" %}'  class="w3-circle" style="height:23px;width:23px" alt="Logout">
+        {% endif %}
+
+    </a>
 
       <a href="/message/" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="Notifications"><i class="fa fa-bell"></i></a>
     </a>
@@ -198,56 +211,51 @@ Friends</button>&nbsp;&nbsp;&nbsp;&nbsp;
       <div class="w3-row-padding">
         <div class="w3-card w3-round w3-white">
         <div class="w3-container">
-  <form action="/action_page.php">
+  <form name="myform"action="/addevent/" method="post">
+      {% csrf_token %}
   <div class="row" style="margin:8px 0px 0px 0px">
     <div class="col-25">
-      <label for="fname">Event Name</label>
+      <label for="name">Event Name</label>
     </div>
     <div class="col-75">
-      <input type="text" id="fname" name="firstname" placeholder="Event name..." required>
+      <input type="text" id="name" name="name" placeholder="Event name..." required>
     </div>
   </div>
-  <div class="row">
+       <div class="row" style="margin:8px 0px 0px 0px">
     <div class="col-25">
-      <label for="lname">Club Name</label>
+      <label for="venue">Venue</label>
     </div>
     <div class="col-75">
-      <input type="text" id="lname" name="lastname" placeholder="Club name..." required>
+      <input type="text" id="venue" name="venue" placeholder="Venue ..." required>
     </div>
   </div>
+
     <div class="row">
     <div class="col-25">
-      <label for="lname">Date</label>
+      <label for="date">Date</label>
     </div>
     <div class="col-75">
-      <input type="date" id="date" name="date" placeholder="Date..." style="margin:10px 10px 10px 0px" required>
+      <input type="date" id="date" name="date" placeholder="YYYY-MM-DD" style="margin:10px 10px 10px 0px" required>
     </div>
   </div>
-    <div class="row">
-    <div class="col-25">
-      <label for="lname">Time</label>
-    </div>
-    <div class="col-75">
-      <input type="time" id="time" name="time" placeholder="Time..." style="margin:10px 10px 10px 0px" required>
-    </div>
-  </div>
+
   <div class="row">
     <div class="col-25">
       <label for="evttype">Type</label>
     </div>
     <div class="col-75">
       <select id="evttype" name="evttype" required>
-        <option value="activity">Activity</option>
-        <option value="workshop">Workshop</option>
+        <option value="S">Activity</option>
+        <option value="B">Workshop</option>
       </select>
     </div>
   </div>
   <div class="row">
     <div class="col-25">
-      <label for="subject">About</label>
+      <label for="description">About</label>
     </div>
     <div class="col-75">
-      <textarea id="subject" name="subject" placeholder="Write something about the event..." style="height:200px" required></textarea>
+      <textarea id="description" name="description" placeholder="Write something about the event..." style="height:200px" required></textarea>
     </div>
   </div>
   <div class="row">
@@ -268,27 +276,34 @@ Friends</button>&nbsp;&nbsp;&nbsp;&nbsp;
       <div class="w3-card w3-round w3-white w3-center">
         <div class="w3-container">
           <p>Upcoming Events:</p>
-          <img src="/w3images/forest.jpg" alt="Forest" style="width:100%;">
-          <p><strong>Holiday</strong></p>
-          <p>Friday 15:00</p>
-          <p><button class="w3-button w3-block w3-theme-l4">Info</button></p>
+
+          <p><strong>Name : {{event.Name}}</strong></p>
+          <p>Date : {{ event.date }}</p>
+            <p>Venue : {{ event.venue }}</p>
+            <p>Type : {% if event.type == "S" %}Session
+            {% else %}Workshop{% endif %}</p>
+          <p><button class="w3-button w3-block w3-theme-l4" onclick="window.location.href = '/event/';" >Event List</button></p>
         </div>
       </div>
       <br>
 
       <div class="w3-card w3-round w3-white w3-center">
-        <div class="w3-container">
+        <div class="w3-container">{% if requests %}
           <p>Friend Request</p>
-          <img src="/w3images/avatar6.png" alt="Avatar" style="width:50%"><br>
-          <span>Friend1</span>
+          <img {% if requests.From_user.img %} src='{% static requests.From_user.img.url|slice:"12:" %}' {% else %} src='{% static "images/user.png" %}' {% endif %}  alt="Avatar" style="width:50%"><br>
+          <span>{{ requests.From_user.name }}</span>
+
           <div class="w3-row w3-opacity">
             <div class="w3-half">
-              <button class="w3-button w3-block w3-green w3-section" title="Accept"><i class="fa fa-check"></i></button>
+              <button onclick="window.location.href='/acceptrequest/{{ requests.id }}'" class="w3-button w3-block w3-green w3-section" title="Accept"><i class="fa fa-check"></i></button>
             </div>
             <div class="w3-half">
-              <button class="w3-button w3-block w3-red w3-section" title="Decline"><i class="fa fa-remove"></i></button>
+              <button onclick="window.location.href='/deleterequest/{{ requests.id }}'" class="w3-button w3-block w3-red w3-section" title="Decline"><i class="fa fa-remove"></i></button>
             </div>
           </div>
+            {% else %}
+            <p><h4>No Pending Friend Requests</h4></p>
+            {% endif %}
         </div>
       </div>
       <br>
@@ -311,6 +326,22 @@ Friends</button>&nbsp;&nbsp;&nbsp;&nbsp;
 
 
 <script>
+function valform(){
+   var x = document.getElementById("myform"), inputs = x.getElementsByTagName("input"), input = null, flag = true;
+   for(var i = 0, len = inputs.length; i < len; i++) {
+       input = inputs[i];
+       if(!input.value) {
+           flag = false;
+           input.focus();
+           alert("Please fill all the fields");
+           break;
+       }
+   }
+   return(flag);
+}
+var today = new Date().toISOString().split('T')[0];
+   document.getElementsByName("date")[0].setAttribute('min', today);
+
 // Accordion
 function myFunction(id) {
   var x = document.getElementById(id);

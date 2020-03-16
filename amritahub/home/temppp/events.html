@@ -1,7 +1,6 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
-  {% load static %}
-<title>My Photos</title>
+<title>Events</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -15,22 +14,11 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
   /* color:black; */
   padding:5px;
 }
-footer{
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-}
   .navbar{
   	height:45px;
     text-align:middle;
     margin:auto;
   }
-  .wrapper {
-    min-height: 100%;
-    display: grid;
-    grid-template-rows: auto 1fr auto;
-}
  
   center {
   position: absolute;
@@ -48,6 +36,20 @@ input[type=text], select, textarea{
   border: 1px solid #ccc;
   border-radius: 4px;
   resize: vertical;
+}
+input[type=date], select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+}
+input[type=time], select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
 }
 
 label {
@@ -105,26 +107,19 @@ input[type=submit]:hover {
 <body class="w3-theme-l5">
 
   <!-- Navbar -->
- <div class="w3-top">
+  <div class="w3-top">
    <div class="w3-bar w3-theme-d2 w3-left-align w3-large navbar">
     <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2" href="javascript:void(0);" onclick="openNav()">
       <i class="fa fa-bars"></i></a>
-    <a href="/home/" class="w3-bar-item w3-button w3-padding-large w3-theme-d4 navbar"><i class="fa fa-home w3-margin-right"></i>Amrita Hub</a>
-    <!-- <div>
+    <a href="#" class="w3-bar-item w3-button w3-padding-large w3-theme-d4 navbar"><i class="fa fa-home w3-margin-right"></i>Amrita Hub</a>
+     <div>
   	<input type="text" class="w3-bar-item w3-padding-large w3-hide-small w3-input navbar" placeholder="Search...">
-       <a href="#" class="w3-bar-item w3-padding-large w3-hide-small w3-button w3-theme-l1"><i class="fa fa-search navbar"></i></a></div>-->
+       <a href="#" class="w3-bar-item w3-padding-large w3-hide-small w3-button w3-theme-l1"><i class="fa fa-search navbar"></i></a></div>
+    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="My Account">
+      <img src="/w3images/avatar2.png" class="w3-circle" style="height:23px;width:23px" alt="Logout">
+    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="Account Settings"><i class="fa fa-user"></i></a>
 
-    <a href="/logout/" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="Logout">
-      <img src='{% static "images/logout.png" %}' class="w3-circle" style="height:23px;width:23px" alt="Logout">
-    <a href="/profile/" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="My Account">
-        {% if profile.img %} <img src='{%static profile.img.url|slice:"12:" %}'  class="w3-circle" style="height:23px;width:23px" alt="Logout">
-        {% else %}
-        <img src='{% static "images/user.png" %}'  class="w3-circle" style="height:23px;width:23px" alt="Logout">
-        {% endif %}
-
-    </a>
-
-      <a href="/message/" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="Notifications"><i class="fa fa-bell"></i></a>
+      <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="Messages"><i class="fa fa-bell"></i></a>
     </a>
    </div>
   </div>
@@ -168,15 +163,15 @@ Friends</button>&nbsp;&nbsp;&nbsp;&nbsp;
       <br>
 
       <!-- Accordion -->
-     <div class="w3-card w3-round">
+      <div class="w3-card w3-round">
         <div class="w3-white">
-          <button onclick="window.location.href = '/friends/';" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i> My Friends</button>
+          <button onclick="window.location.href='/home/gauthamkrishna/Downloads/ncp_proj/friends.html'" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i> My Friends</button>
           <div id="Demo1" class="w3-hide w3-container">
-          </div>
-          <button onclick="window.location.href='/event/';" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i> My Events</button>
+          </div>  
+          <button onclick="window.location.href='/home/gauthamkrishna/Downloads/ncp_proj/events.html#/'" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i> My Events</button>
           <div id="Demo2" class="w3-hide w3-container">
           </div>
-          <button onclick="window.location.href='/photos/';" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-users fa-fw w3-margin-right"></i> My Photos</button>
+          <button onclick="window.location.href='/home/gauthamkrishna/Downloads/ncp_proj/photos.html#/'" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-users fa-fw w3-margin-right"></i> My Photos</button>
           <div id="Demo3" class="w3-hide w3-container">
           </div>
         </div>
@@ -196,48 +191,67 @@ Friends</button>&nbsp;&nbsp;&nbsp;&nbsp;
 
       <div class="w3-row-padding">
         <div class="w3-card w3-round w3-white">
-        	<div class="w3-container">
- 						<h4>My Photos</h4>
-
-
-                {% if photos %}
-
-
-
-{% for photo in photos %}
-{% if forloop.counter0|divisibleby:3 %}
-<div class="w3-row-padding w3-margin-top w3-margin-bottom">
-     {% endif %}
-  <div class="w3-third">
-    <div class="w3-card" style="height:40%">
-        <a href='{% static photo.img.url|slice:"12:" %}'>
-            <img src='{% static photo.img.url|slice:"12:" %}' style="height:100%;width:100%;" ></a>
-      <div class="w3-container">
-      </div>
+        <div class="w3-container">
+  <form name="myform" id="myform" action="/action_page.php" onsubmit="return valform();" method="post">
+  <div class="row" style="margin:8px 0px 0px 0px">
+    <div class="col-25">
+      <label for="fname">Event Name</label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="fname" name="firstname" placeholder="Event name...">
     </div>
   </div>
-
-
-    {% if forloop.counter|divisibleby:3 %}
+  <div class="row">
+    <div class="col-25">
+      <label for="lname">Club Name</label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="lname" name="lastname" placeholder="Club name...">
+    </div>
+  </div>
+    <div class="row">
+    <div class="col-25">
+      <label for="lname">Date</label>
+    </div>
+    <div class="col-75">
+      <input type="date" id="date" name="date" placeholder="Date..." style="margin:10px 10px 10px 0px">
+    </div>
+  </div>
+    <div class="row">
+    <div class="col-25">
+      <label for="lname">Time</label>
+    </div>
+    <div class="col-75">
+      <input type="time" id="time" name="time" placeholder="Time..." style="margin:10px 10px 10px 0px">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25">
+      <label for="evttype">Type</label>
+    </div>
+    <div class="col-75">
+      <select id="evttype" name="evttype">
+        <option value="activity">Activity</option>
+        <option value="workshop">Workshop</option>
+      </select>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25">
+      <label for="subject">About</label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="subject" name="subject" placeholder="Write something about the event..." >
+    </div>
+  </div>
+  <div class="row">
+    </div>
+  <div class="row">
+    <input type="submit" value="Add" class="w3-hover-indigo" style="margin:10px">
+  </div>
+  </form>
 </div>
-{% endif %}
-                {% endfor %}
-
-
-                {% else %}
-                <br><div align="center"><h6>No photos Available!</h6></div>
-                {% endif %}
-
-                		</div>
-
-
-
-
-
-
-
-
-        </div>
+          </div>
       </div>
 
     <!-- End Middle Column -->
@@ -248,43 +262,29 @@ Friends</button>&nbsp;&nbsp;&nbsp;&nbsp;
       <div class="w3-card w3-round w3-white w3-center">
         <div class="w3-container">
           <p>Upcoming Events:</p>
-
-          <p><strong>Name : {{event.Name}}</strong></p>
-          <p>Date : {{ event.date }}</p>
-            <p>Venue : {{ event.venue }}</p>
-            <p>Type : {% if event.type == "S" %}Session
-            {% else %}Workshop{% endif %}</p>
-          <p><button class="w3-button w3-block w3-theme-l4" onclick="window.location.href = '/event/';" >Event List</button></p>
+          <img src="/w3images/forest.jpg" alt="Forest" style="width:100%;">
+          <p><strong>Holiday</strong></p>
+          <p>Friday 15:00</p>
+          <p><button class="w3-button w3-block w3-theme-l4">Info</button></p>
         </div>
       </div>
       <br>
 
-        <div class="w3-card w3-round w3-white w3-center">
-        <div class="w3-container">{% if requests %}
+      <div class="w3-card w3-round w3-white w3-center">
+        <div class="w3-container">
           <p>Friend Request</p>
-          <img {% if requests.From_user.img %} src='{% static requests.From_user.img.url|slice:"12:" %}' {% else %} src='{% static "images/user.png" %}' {% endif %}  alt="Avatar" style="width:50%"><br>
-          <span>{{ requests.From_user.name }}</span>
-
+          <img src="/w3images/avatar6.png" alt="Avatar" style="width:50%"><br>
+          <span>Friend1</span>
           <div class="w3-row w3-opacity">
             <div class="w3-half">
-              <button onclick="window.location.href='/acceptrequest/{{ requests.id }}'" class="w3-button w3-block w3-green w3-section" title="Accept"><i class="fa fa-check"></i></button>
+              <button class="w3-button w3-block w3-green w3-section" title="Accept"><i class="fa fa-check"></i></button>
             </div>
             <div class="w3-half">
-              <button onclick="window.location.href='/deleterequest/{{ requests.id }}'" class="w3-button w3-block w3-red w3-section" title="Decline"><i class="fa fa-remove"></i></button>
+              <button class="w3-button w3-block w3-red w3-section" title="Decline"><i class="fa fa-remove"></i></button>
             </div>
           </div>
-            {% else %}
-            <p><h4>No Pending Friend Requests</h4></p>
-            {% endif %}
         </div>
       </div>
-      <br>
-
-
-    <!-- End Right Column -->
-    </div>
-
-
       <br>
 
 
@@ -299,8 +299,8 @@ Friends</button>&nbsp;&nbsp;&nbsp;&nbsp;
 <br>
 
 <!-- Footer -->
-<footer class="w3-container w3-theme-d3 w3-padding-16">
-  <a href="https://www.amrita.edu"><h5>Visit Amrita Page</h5></a>
+<footer class="w3-container w3-theme-d3 w3-padding-16 ">
+  <h5>Visit Amrita Page</h5>
 </footer>
 
 
@@ -316,6 +316,20 @@ function myFunction(id) {
     x.previousElementSibling.className =
     x.previousElementSibling.className.replace(" w3-theme-d1", "");
   }
+}
+
+function valform(){
+    var x = document.getElementById("myform"), inputs = x.getElementsByTagName("input"), input = null, flag = true;
+    for(var i = 0, len = inputs.length; i < len; i++) {
+        input = inputs[i];
+        if(!input.value) {
+            flag = false;
+            input.focus();
+            alert("Please fill all the fields");
+            break;
+        }
+    }
+    return(flag);
 }
 function myFunc(id) {
   var x = document.getElementById(id);

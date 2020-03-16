@@ -1,43 +1,54 @@
 <!DOCTYPE html>
 <html>
-{% load static %}
-<title>Home</title>
+<title>profile</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+{% load static %}
+<title>Edit Page</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <style>
+   <style>
+html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
+.friendlist {
+  background-color: lightblue;
+  width: 100%;
+  height: 120px;
+  overflow: auto;
+}
+
+</style>
+    </style>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-indigo.css">
 <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
 html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
-.searchbar{
-  height:100%
-  /* color:black; */
-  padding:5px;
+.friendlist {
+  background-color: lightblue;
+  width: 100%;
+  height: 120px;
+  overflow: auto;
 }
-  .navbar{
-  	height:45px;
-    text-align:middle;
-    margin:auto;
-  }
- 
-  center {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+footer{
+    position: relative;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }
+
 </style>
-<body class="w3-theme-l5">
+
+<body class="w3-theme-l5" >
 {% if message %}
 <script>
     alert('{{ message }}');
 
-
 </script>
-
 {% endif %}
 <script>
+
 function openComments(id) {
   var y = document.getElementById(id);
   if (y.className.indexOf("w3-show") == -1) {
@@ -46,6 +57,16 @@ function openComments(id) {
     y.className = y.className.replace(" w3-show", "");
   }
 }
+
+function dit(poid) {
+  var x = document.getElementById("Edit"+poid);
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+  } else {
+    x.className = x.className.replace("w3-show", "");
+  }
+}
+
 
 function readURL(input) {
         if (input.files && input.files[0]) {
@@ -62,14 +83,6 @@ function readURL(input) {
 
         }
     }
-function dit() {
-  var x = document.getElementById("Edit");
-  if (x.className.indexOf("w3-show") == -1) {
-    x.className += " w3-show";
-  } else {
-    x.className = x.className.replace("w3-show", "");
-  }
-}
 
 
 function chooseFile() {
@@ -77,9 +90,13 @@ function chooseFile() {
    }
 
 </script>
+<script>
 
-  <!-- Navbar -->
-  <div class="w3-top">
+</script>
+
+
+<!-- Navbar -->
+<div class="w3-top">
    <div class="w3-bar w3-theme-d2 w3-left-align w3-large navbar">
     <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2" href="javascript:void(0);" onclick="openNav()">
       <i class="fa fa-bars"></i></a>
@@ -106,7 +123,7 @@ function chooseFile() {
   <!-- Navbar on small screens -->
   <div id="navDemo" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium w3-large">
     <a href="/message/" class="w3-bar-item w3-button w3-padding-large">Notifications</a>
-    <a href="/profile/" class="w3-bar-item w3-button w3-padding-large">My Profile</a>    
+    <a href="/profile/" class="w3-bar-item w3-button w3-padding-large">My Profile</a>
     <a href="/logout/" class="w3-bar-item w3-button w3-padding-large">Logout</a>
   </div>
 
@@ -115,26 +132,16 @@ function chooseFile() {
   <!-- The Grid -->
   <div class="w3-row">
     <!-- Left Column -->
-    
-    
-   <div class="w3-col m3">
+    <div class="w3-col m3">
       <!-- Profile -->
       <div class="w3-card w3-round w3-white">
         <div class="w3-container">
-         <h4 class="w3-center">Messages</h4>
+         <h4 class="w3-center">{{ friendpro.name }}</h4>
+         <p class="w3-center"><img {% if friendpro.img %} src='{% static friendpro.img.url|slice:"12:" %}' {% else %} src='{% static "images/user.png" %}' {% endif %}  class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
          <hr>
-         <button onclick="myFunc('demo1')" class="w3-button w3-block w3-left-align w3-blue"><i class="fa fa-user fa-fw w3-margin-center"></i>Friends</button>&nbsp;&nbsp;&nbsp;
-          <div id="demo1" class="w3-hide w3-container">
-            <p>My Friends list...</p>
-          </div>
-         <button onclick="myFunc('demo2')" class="w3-button w3-block w3-left-align w3-teal"><i class="fa fa-users fa-fw w3-margingin-center"></i> Groups</button>&nbsp;&nbsp;&nbsp;
-          <div id="demo2" class="w3-hide w3-container">
-            <p>My Groups list...</p>
-          </div>
-         <button onclick="myFunc('demo3')" class="w3-button w3-block w3-left-align w3-indigo"><i class="fa fa-bullhorn fa-fw w3-margin-center"></i> Discord/Broadcast</button>&nbsp;&nbsp;&nbsp;
-          <div id="demo3" class="w3-hide w3-container">
-            <p>Broadcast msg to everyone...</p>
-          </div>
+         <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i>{{ friendpro.phone }}</p>
+         <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i>{{ friendpro.city }}</p>
+         <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i>{{ friendpro.dob|date:"Y-m-d" }}</p>
         </div>
       </div>
       <br>
@@ -144,7 +151,7 @@ function chooseFile() {
         <div class="w3-white">
           <button onclick="window.location.href = '/friends/';" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i> My Friends</button>
           <div id="Demo1" class="w3-hide w3-container">
-          </div>  
+          </div>
           <button onclick="window.location.href='/event/';" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i> My Events</button>
           <div id="Demo2" class="w3-hide w3-container">
           </div>
@@ -156,54 +163,24 @@ function chooseFile() {
       <br>
 
       <!-- Interests -->
-      
 
-      <!-- Alert Box -->
-
+      <br>
     <!-- End Left Column -->
     </div>
 
     <!-- Middle Column -->
     <div class="w3-col m7">
-<form action="/uploadpost/" method="post" enctype="multipart/form-data" >
-    {% csrf_token %}
-      <div class="w3-row-padding">
-        <div class="w3-col m12">
-          <div class="w3-card w3-round w3-white">
-            <div class="w3-container w3-padding">
-              <h6 class="w3-opacity">Post Something</h6>
-              <input type="text"  name="caption" placeholder="status" class="w3-input w3-border">
 
-
-    <img id="blah"  src="#" alt="image" style="width:70%;visibility: hidden;margin:2%;"   />
-
-                <div style="height:0px;overflow:hidden">
-   <input type="file" id="fileInput" name="fileInput" onchange="readURL(this);" />
-</div>
-              <button type="submit" class="w3-button w3-theme"><i class="fa fa-pencil"></i>  Post</button>
-
-                <button type="button" onclick="chooseFile();" class="w3-button w3-theme"><i class="fa fa-picture-o"></i>  upload image</button>
-            </div>
-          </div>
-        </div>
-      </div>
-</form>
-          {% if post %}
+{% if post %}
       {% for po in post %}
+
+
 
 
       <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
         <img src='{%static po.username.img.url|slice:"12:" %}' alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
 
-      <!--  <span class="w3-right w3-opacity" style="margin-left:20px;">
-          <div class="w3-dropdown-click">
-            <button onclick="dit()" class="w3-button" style="padding-top:0px;"><i class="fa fa-ellipsis-h"></i></button>
-            <div id="Edit" class="w3-dropdown-content w3-bar-block w3-border w3-black">
 
-              <a href="/deletepost/{{ po.id }}" class="w3-bar-item w3-button">Delete</a>
-            </div>
-          </div>
-        </span>-->
         <span class="w3-right w3-opacity">{{ po.date }}</span>
         <h4>{{ po.username }}</h4><br>
         <hr class="w3-clear">
@@ -227,7 +204,7 @@ function chooseFile() {
           {% endif %}
 
 
-          <button type="button" onclick="openComments('commentBox{{ po.id }}')"  class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i> &nbsp;Comments</button>
+            <button type="button" onclick="openComments('commentBox{{ po.id }}')"  class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i> &nbsp;Comments</button>
         <div id="commentBox{{ po.id }}" class="w3-container w3-card w3-hide w3-light-grey w3-round" style="padding:0px;">
           {% if comments|keyvalue:name %}
             {% for comment in comments|keyvalue:name %}
@@ -251,8 +228,10 @@ function chooseFile() {
 
       </div>
 
+
+
       {% endfor %}
-                {% else %}
+ {% else %}
 
     <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
 
@@ -277,7 +256,7 @@ function chooseFile() {
     </div>
 
     <!-- Right Column -->
-    <div class="w3-col m2">
+      <div class="w3-col m2">
       <div class="w3-card w3-round w3-white w3-center">
         <div class="w3-container">
           <p>Upcoming Events:</p>
@@ -311,8 +290,17 @@ function chooseFile() {
             {% endif %}
         </div>
       </div>
+
+
+    <!-- End Right Column -->
+    </div>
+
+
+      <br>
       <br>
 
+
+      <br>
 
     <!-- End Right Column -->
     </div>
@@ -331,10 +319,8 @@ function chooseFile() {
 
 
 <script>
-
-
 // Accordion
-/*function myFunction(id) {
+function myFunction(id) {
   var x = document.getElementById(id);
   if (x.className.indexOf("w3-show") == -1) {
     x.className += " w3-show";
@@ -344,20 +330,9 @@ function chooseFile() {
     x.previousElementSibling.className =
     x.previousElementSibling.className.replace(" w3-theme-d1", "");
   }
-}*/
-function myFunc(id) 
-  var x = document.getElementById(id);
-  if (x.className.indexOf("w3-show") == -1) {
-    x.className += " w3-show";
-  } else { 
-    x.className = x.className.replace(" w3-show", "");
-  }
 }
 
 
-
-
-// Used to toggle the menu on smaller screens when clicking on the menu button
 function openNav() {
   var x = document.getElementById("navDemo");
   if (x.className.indexOf("w3-show") == -1) {
@@ -366,8 +341,8 @@ function openNav() {
     x.className = x.className.replace(" w3-show", "");
   }
 }
-
 </script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
 </body>
 </html>

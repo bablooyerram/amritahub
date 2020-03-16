@@ -1,7 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5aab2e8d-997a-4c32-8a0b-7081271127d9" name="Default Changelist" comment="" />
+    <list default="true" id="5aab2e8d-997a-4c32-8a0b-7081271127d9" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/home/static/images/nofriend.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/home/static/images/nopost.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/home/static/images/user.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/home/templates/eventlist.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/home/templates/friendprofile.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/home/temppp/Home.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/home/temppp/eventlist.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/home/temppp/events.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/amritahub/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/amritahub/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/amritahub/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/amritahub/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/home/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/home/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/home/templates/events.html" beforeDir="false" afterPath="$PROJECT_DIR$/home/templates/events.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/home/templates/friends.html" beforeDir="false" afterPath="$PROJECT_DIR$/home/templates/friends.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/home/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/home/templates/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/home/templates/message.html" beforeDir="false" afterPath="$PROJECT_DIR$/home/templates/message.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/home/templates/photos.html" beforeDir="false" afterPath="$PROJECT_DIR$/home/templates/photos.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/home/templates/proedit.html" beforeDir="false" afterPath="$PROJECT_DIR$/home/templates/proedit.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/home/templates/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/home/templates/profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/home/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/home/views.py" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -11,28 +34,33 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="Python Script" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
   <component name="ProjectId" id="1PyQiOL9rsNY2PkLUjX0neds4kU" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/home/templates" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/home/temppp" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\hp\Documents\amrita-hub\amritahub\home\templates" />
-      <recent name="C:\Users\hp\Documents\amrita-hub\amritahub\home\static\images" />
-      <recent name="C:\Users\tinku\PycharmProjects\amrita-hub\amritahub\images" />
-      <recent name="C:\Users\tinku\PycharmProjects\amrita-hub\amritahub\home\templates" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\hp\Documents\amrita-hub\amritahub\home\templates" />
       <recent name="C:\Users\hp\Documents\amrita-hub\amritahub\home\temppp" />
       <recent name="C:\Users\tinku\PycharmProjects\amrita-hub\amritahub\home\static\images" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\hp\Documents\amrita-hub\amritahub\home\temppp" />
+      <recent name="C:\Users\hp\Documents\amrita-hub\amritahub\home\static\images" />
+      <recent name="C:\Users\hp\Documents\amrita-hub\amritahub\home\templates" />
+      <recent name="C:\Users\tinku\PycharmProjects\amrita-hub\amritahub\images" />
+      <recent name="C:\Users\tinku\PycharmProjects\amrita-hub\amritahub\home\templates" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -65,5 +93,18 @@
   </component>
   <component name="UnknownFeatures">
     <option featureType="com.intellij.fileTypeFactory" implementationName="*.css" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

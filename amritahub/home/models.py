@@ -21,6 +21,7 @@ class Profile(models.Model):
     address= models.TextField(default="address", null=True)
     bio=models.TextField(default=None, null=True)
 
+
     def __str__(self):
         return self.name
 
@@ -94,9 +95,14 @@ class friendlist(models.Model):
 
 
 class friendrequest(models.Model):
-    From_user=models.ForeignKey(Profile, related_name="requested_user_profile", primary_key=True, on_delete=models.CASCADE,default=None)
+    From_user=models.ForeignKey(Profile, related_name="requested_user_profile",  on_delete=models.CASCADE,default=None)
     To_user= models.ForeignKey(Profile, related_name="assigned_user_profile", on_delete=models.CASCADE, default=None)
     date = models.DateTimeField(auto_now_add=True)
+
+
+
+
+
 
 class Events(models.Model):
     SESSION = 'S'
@@ -108,7 +114,7 @@ class Events(models.Model):
     )
     Owner=models.ForeignKey(Profile, on_delete=models.CASCADE,default=None)
     Name=models.TextField(default=None, null=True,unique=True)
-    date=models.DateTimeField( null=False)
+    date=models.DateField( null=False)
     Description=models.TextField(default=None, null=False)
     type=models.CharField(max_length=1, choices=TYPES)
     public=models.BooleanField(default=True)
